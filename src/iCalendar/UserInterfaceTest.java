@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
-
+//don't need
 public class UserInterfaceTest {
 	UserInterface test = new UserInterface();
 

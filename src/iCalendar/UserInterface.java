@@ -7,7 +7,10 @@ public class UserInterface {
 
 	InputValidator inputCheck = new InputValidator();
 	Scanner scan = new Scanner(System.in);
-	
+	String startDate = "";
+	String endDate = "";
+	String startTime = "";
+	String endTime = "";
 
 	public UserInterface()
 	{
@@ -16,20 +19,20 @@ public class UserInterface {
 
 	public String titlePrompt()
 	{
-		System.out.println("Please enter a title for your event");
+		System.out.println("Please enter a title for your event:");
 		String title = scan.nextLine();
 		return title;
 	}
 
 	public String startDatePrompt()
 	{
-		System.out.println("Please enter a start date(mm/dd/yyyy)");
-		String startDate = scan.nextLine();
+		System.out.println("Please enter a start date(mm/dd/yyyy):");
+		startDate = scan.nextLine();
 
 		while(!inputCheck.isValidDateString(startDate))
 		{
 			System.out.print("Invalid start date, ");
-			System.out.println("Please enter a start date(mm/dd/yyyy)");
+			System.out.println("Please enter a start date(mm/dd/yyyy):");
 			startDate = scan.nextLine();
 		}
 		return startDate;
@@ -37,13 +40,13 @@ public class UserInterface {
 
 	public String endDatePrompt()
 	{
-		System.out.println("Please enter an end date(mm/dd/yyyy)");
-		String endDate = scan.nextLine();
+		System.out.println("Please enter an end date(mm/dd/yyyy):");
+		endDate = scan.nextLine();
 
-		while(!inputCheck.isValidDateString(endDate))
+		while(!inputCheck.isValidEndDateString(startDate, endDate))
 		{
 			System.out.print("Invalid end date, ");
-			System.out.println("Please enter an end date(mm/dd/yyyy)");
+			System.out.println("Please enter an end date(mm/dd/yyyy):");
 			endDate = scan.nextLine();
 		}
 		return endDate;
@@ -51,13 +54,13 @@ public class UserInterface {
 
 	public String startTimePrompt()
 	{
-		System.out.println("Please enter a start time(hh:mm am/pm)");
-		String startTime = scan.nextLine();
+		System.out.println("Please enter a start time(hh:mm am/pm):");
+		startTime = scan.nextLine();
 
 		while(!inputCheck.isValidTimeString(startTime))
 		{
 			System.out.print("Invalid start time, ");
-			System.out.println("Please enter a start time(hh:mm am/pm)");
+			System.out.println("Please enter a start time(hh:mm am/pm):");
 			startTime = scan.nextLine();
 
 		}
@@ -67,13 +70,14 @@ public class UserInterface {
 
 	public String endTimePrompt()
 	{
-		System.out.println("Please enter an end time(hh:mm am/pm)");
-		String endTime = scan.nextLine();
+		System.out.println("Please enter an end time(hh:mm am/pm):");
+		endTime = scan.nextLine();
 
-		while(!inputCheck.isValidTimeString(endTime))
+		while(!inputCheck.isValidEndTimeString(inputCheck.startDateEndDateComparison(startDate, endDate), 
+				startTime, endTime))
 		{
 			System.out.print("Invalid end time, ");
-			System.out.println("Please enter an end time(hh:mm am/pm)");
+			System.out.println("Please enter an end time(hh:mm am/pm):");
 			endTime = scan.nextLine();
 
 		}
@@ -113,14 +117,14 @@ public class UserInterface {
 
 	public String locationPrompt()
 	{
-		System.out.println("Please enter a location");
+		System.out.println("Please enter a location:");
 		String location = scan.nextLine();
 		return location;
 	}
 	
 	public String timeZonePrompt()
 	{
-		System.out.println("Please enter a timezone(e.g. =  Pacific/Honolulu)");
+		System.out.println("Please enter a timezone(e.g. =  Pacific/Honolulu):");
 		String title = scan.nextLine();
 		return title;
 	}
@@ -130,13 +134,13 @@ public class UserInterface {
 	public String latitudinalPrompt()
 	{
 		String latitude;
-		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
+		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000:");
 		latitude = scan.nextLine();
 
 		while(!(inputCheck.isValidGeographicPosition(latitude)))
 		{
 			System.out.print("Invalid input! ");
-			System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
+			System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000:");
 			latitude = scan.nextLine();
 
 		}
@@ -147,13 +151,13 @@ public class UserInterface {
 	public String longitudinalPrompt()
 	{
 		String longitude;
-		System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
+		System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000:");
 		longitude = scan.nextLine();
 
 		while(!inputCheck.isValidGeographicPosition(longitude))
 		{
 			System.out.print("Invalid input! ");
-			System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
+			System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000:");
 			longitude = scan.nextLine();
 
 		}
@@ -164,13 +168,13 @@ public class UserInterface {
 	
 	public String gcdDatePrompt()
 	{
-		System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy)");
+		System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy):");
 		String date = scan.nextLine();
 
 		while(!inputCheck.isValidDateString(date))
 		{
 			System.out.print("Invalid date, ");
-			System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy)");
+			System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy):");
 			date = scan.nextLine();
 		}
 		return date;
@@ -178,13 +182,13 @@ public class UserInterface {
 	
 	public String folderPathPrompt()
 	{
-		System.out.println("Please enter a path to folder containing .ics files");
+		System.out.println("Please enter a path to folder containing .ics files:");
 		String folderPath = scan.nextLine();
 		File file = new File(folderPath);
 		while(!file.isDirectory())
 		{
 			System.out.print("Invalid path, ");
-			System.out.println("Please enter a path to folder containing .ics files");
+			System.out.println("Please enter a path to folder containing .ics files:");
 			folderPath = scan.nextLine();
 			file = new File(folderPath);
 		}
@@ -196,13 +200,13 @@ public class UserInterface {
 		boolean position = false;
 		String decision = "";
 
-		System.out.println("Would you like to enter a geographic position? type yes or no");
+		System.out.println("Would you like to enter a geographic position? type yes or no:");
 		decision = scan.nextLine();
 
 		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
 		{
 			System.out.print("Invalid input. ");	
-			System.out.println("Would you like to enter a geographic position? type yes or no");
+			System.out.println("Would you like to enter a geographic position? type yes or no:");
 			decision = scan.nextLine();
 		}
 
@@ -217,13 +221,13 @@ public class UserInterface {
 	{
 		boolean result = false;
 		String decision = "";
-		System.out.println("Would you like to enter a timezone? type yes or no");
+		System.out.println("Would you like to enter a timezone? type yes or no:");
 		decision = scan.nextLine();
 		
 		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
 		{
 			System.out.print("Invalid input. ");	
-			System.out.println("Would you like to enter a timezone? type yes or no");
+			System.out.println("Would you like to enter a timezone? type yes or no:");
 			decision = scan.nextLine();
 		}
 
@@ -239,13 +243,13 @@ public class UserInterface {
 	{
 		boolean result = false;
 		String decision = "";
-		System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no");
+		System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no:");
 		decision = scan.nextLine();
 		
 		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
 		{
 			System.out.print("Invalid input. ");	
-			System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no");
+			System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no:");
 			decision = scan.nextLine();
 		}
 

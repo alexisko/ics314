@@ -11,7 +11,9 @@ public class InputValidatorTest {
 	@Test
 	public void testIsValidDateString() {
 
+		//test.isValidDateString("")
 		assertTrue(test.isValidDateString("12/12/1234"));
+		assertFalse(test.isValidDateString("13/83/2015"));
 		assertFalse(test.isValidDateString("as/as/asdf"));
 		assertFalse(test.isValidDateString("asasasdf"));
 		assertFalse(test.isValidDateString(""));
@@ -25,6 +27,8 @@ public class InputValidatorTest {
 
 	@Test
 	public void testIsValidTimeString() {
+		
+		//test.isValidTimeString("")
 		assertTrue(test.isValidTimeString("01:12 am"));
 		assertTrue(test.isValidTimeString("01:12 pm"));	
 		assertFalse(test.isValidTimeString(""));
@@ -35,10 +39,16 @@ public class InputValidatorTest {
 		assertFalse(test.isValidTimeString("12:12 qm"));
 		assertFalse(test.isValidTimeString("12:12 pq"));
 		assertFalse(test.isValidTimeString("123:123 pm"));
+		assertFalse(test.isValidTimeString("15:12 pm"));
+		assertFalse(test.isValidTimeString("12:76 pm"));
+		assertFalse(test.isValidTimeString("15:89 pm"));
+		
 	}
 
 	@Test
 	public void testIsValidClassification() {
+		
+		//test.isValidClassification("")
 		assertTrue(test.isValidClassification("public"));
 		assertTrue(test.isValidClassification("PUBLIC"));
 		assertTrue(test.isValidClassification("private"));
@@ -54,6 +64,8 @@ public class InputValidatorTest {
 
 	@Test
 	public void testIsValidGeographicPosition() {
+		
+		//test.isValidGeographicPosition("")
 		assertTrue(test.isValidGeographicPosition("00.000000"));
 		assertTrue(test.isValidGeographicPosition("+00.000000"));
 		assertTrue(test.isValidGeographicPosition("-00.000000"));
